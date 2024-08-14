@@ -1,11 +1,47 @@
-// src/components/Table.jsx
-import  { useState } from 'react';
+import { useState } from 'react';
 
 const Table = () => {
   const [view, setView] = useState('Crypto');
 
   const handleViewChange = (newView) => {
     setView(newView);
+  };
+
+  // Example data for Crypto and Forex views
+  const data = {
+    Crypto: [
+      {
+        name: 'BTC',
+        displayName: 'Bitcoin',
+        price: '$27,000',
+        network: 'Bitcoin Network',
+        imgSrc: '/path-to-bitcoin-logo.png'
+      },
+      {
+        name: 'ETH',
+        displayName: 'Ethereum',
+        price: '$1,800',
+        network: 'Ethereum Network',
+        imgSrc: '/path-to-ethereum-logo.png'
+      }
+    ],
+    Forex: [
+      // Example Forex data
+      {
+        name: 'USD/EUR',
+        displayName: 'USD to EUR',
+        price: '0.85',
+        network: 'Forex Network',
+        imgSrc: '/path-to-usd-eur-logo.png'
+      },
+      {
+        name: 'USD/JPY',
+        displayName: 'USD to JPY',
+        price: '110.00',
+        network: 'Forex Network',
+        imgSrc: '/path-to-usd-jpy-logo.png'
+      }
+    ]
   };
 
   return (
@@ -51,47 +87,28 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b">
-              <td className="py-2 px-4 flex items-center space-x-4">
-                <img
-                  src="/path-to-bitcoin-logo.png"  // Replace with the path to the Bitcoin image
-                  alt="Bitcoin"
-                  className="h-12 w-12"
-                />
-                <div className="text-center">
-                  <div className="text-lg font-bold">BTC</div>
-                  <div className="text-sm">Bitcoin</div>
-                </div>
-              </td>
-              <td className="py-2 px-4">$27,000</td>
-              <td className="py-2 px-4">Bitcoin Network</td>
-              <td className="py-2 px-4 text-center">
-                <button className="text-blue-500 hover:text-blue-700">
-                  ★
-                </button>
-              </td>
-            </tr>
-            <tr className="border-b">
-              <td className="py-2 px-4 flex items-center space-x-4">
-                <img
-                  src="/path-to-ethereum-logo.png"  // Replace with the path to the Ethereum image
-                  alt="Ethereum"
-                  className="h-12 w-12"
-                />
-                <div className="text-center">
-                  <div className="text-lg font-bold">ETH</div>
-                  <div className="text-sm">Ethereum</div>
-                </div>
-              </td>
-              <td className="py-2 px-4">$1,800</td>
-              <td className="py-2 px-4">Ethereum Network</td>
-              <td className="py-2 px-4 text-center">
-                <button className="text-blue-500 hover:text-blue-700">
-                  ★
-                </button>
-              </td>
-            </tr>
-            {/* Add more rows as needed */}
+            {data[view].map((item, index) => (
+              <tr key={index} className="border-b">
+                <td className="py-2 px-4 flex items-center space-x-4">
+                  <img
+                    src={item.imgSrc}  // Path to the image based on data
+                    alt={item.name}
+                    className="h-12 w-12"
+                  />
+                  <div className="text-center">
+                    <div className="text-lg font-bold">{item.name}</div>
+                    <div className="text-sm">{item.displayName}</div>
+                  </div>
+                </td>
+                <td className="py-2 px-4">{item.price}</td>
+                <td className="py-2 px-4">{item.network}</td>
+                <td className="py-2 px-4 text-center">
+                  <button className="text-blue-500 hover:text-blue-700" aria-label={`Favorite ${item.name}`}>
+                    ★
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

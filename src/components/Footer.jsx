@@ -1,11 +1,10 @@
-// src/components/Footer.jsx
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white p-6 mt-8">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
         {/* Follow Us */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
@@ -28,7 +27,7 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul>
+          <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">Home</a>
             </li>
@@ -47,7 +46,7 @@ const Footer = () => {
         {/* Company */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul>
+          <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">About Us</a>
             </li>
@@ -66,7 +65,7 @@ const Footer = () => {
         {/* Legal Policies */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Legal Policies</h3>
-          <ul>
+          <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">Privacy Policy</a>
             </li>
@@ -82,7 +81,7 @@ const Footer = () => {
         {/* Contact Us */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-          <ul>
+          <ul className="space-y-2">
             <li>
               <a href="mailto:info@example.com" className="hover:underline">Email Us</a>
             </li>
