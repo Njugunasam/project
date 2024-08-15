@@ -3,7 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+/* src/index.css */
 body {
-  @apply h-full;
+  transition: background-color 0.3s ease;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
 }

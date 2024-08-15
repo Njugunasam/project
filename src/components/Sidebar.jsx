@@ -1,77 +1,173 @@
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faExchangeAlt, faHandshake, faSyncAlt, faDollarSign, faUser, faCog } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { HiX } from 'react-icons/hi';
 
-const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
-    <div className={`md:flex md:w-64 md:flex-shrink-0 ${isSidebarOpen ? 'block' : 'hidden'} transition-all duration-300`}>
-      <aside className="bg-gray-200 w-64 p-4 shadow-md flex-shrink-0">
-        {/* Mobile Toggle Button */}
-        <button
-          className="md:hidden text-gray-600 hover:text-gray-800 mb-4"
-          onClick={toggleSidebar}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+    <>
+      {/* Sidebar for larger screens */}
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:mt-24`}>
+        <div className="p-4">
+          {/* Mobile Toggle Button */}
+          <button
+            className="md:hidden text-gray-300 hover:text-white mb-4"
+            onClick={toggleSidebar}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-        <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
-        <ul>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faTachometerAlt} className="text-blue-500 mr-3" />
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faExchangeAlt} className="text-green-500 mr-3" />
-              Exchange
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faHandshake} className="text-yellow-500 mr-3" />
-              P2P Trading
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faSyncAlt} className="text-purple-500 mr-3" />
-              Swap Crypto
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faDollarSign} className="text-red-500 mr-3" />
-              Buy Crypto
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faUser} className="text-teal-500 mr-3" />
-              Account
-            </a>
-          </li>
-          <li>
-            <a href="#" className="flex items-center py-2 px-4 hover:bg-gray-300 rounded">
-              <FontAwesomeIcon icon={faCog} className="text-gray-500 mr-3" />
-              Settings
-            </a>
-          </li>
-        </ul>
+            <HiX className="w-6 h-6" />
+          </button>
+          <ul>
+            <li>
+              <Link to="/" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faTachometerAlt} className="text-blue-400 mr-3" />
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/exchange" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faExchangeAlt} className="text-green-400 mr-3" />
+                Exchange
+              </Link>
+            </li>
+            <li>
+              <Link to="/p2p-trading" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faHandshake} className="text-yellow-400 mr-3" />
+                P2P Trading
+              </Link>
+            </li>
+            <li>
+              <Link to="/swap-crypto" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faSyncAlt} className="text-purple-400 mr-3" />
+                Swap Crypto
+              </Link>
+            </li>
+            <li>
+              <Link to="/buy-crypto" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faDollarSign} className="text-red-400 mr-3" />
+                Buy Crypto
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center py-2 px-4 hover:bg-gray-700 rounded w-full text-left"
+              >
+                <FontAwesomeIcon icon={faUser} className="text-teal-400 mr-3" />
+                Account
+                <svg
+                  className={`ml-auto w-4 h-4 transition-transform ${isDropdownOpen ? 'transform rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <ul className="mt-2 pl-4 space-y-2">
+                  <li>
+                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600 rounded">Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600 rounded">Settings</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <Link to="/settings" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faCog} className="text-gray-400 mr-3" />
+                Settings
+              </Link>
+            </li>
+          </ul>
+        </div>
       </aside>
-    </div>
+
+      {/* Sidebar for smaller screens (Mobile) */}
+      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:hidden`}>
+        <div className="p-4">
+          <button
+            className="text-gray-300 hover:text-white mb-4"
+            onClick={toggleSidebar}
+          >
+            <HiX className="w-6 h-6" />
+          </button>
+          <ul>
+            <li>
+              <Link to="/" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faTachometerAlt} className="text-blue-400 mr-3" />
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/exchange" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faExchangeAlt} className="text-green-400 mr-3" />
+                Exchange
+              </Link>
+            </li>
+            <li>
+              <Link to="/p2p-trading" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faHandshake} className="text-yellow-400 mr-3" />
+                P2P Trading
+              </Link>
+            </li>
+            <li>
+              <Link to="/swap-crypto" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faSyncAlt} className="text-purple-400 mr-3" />
+                Swap Crypto
+              </Link>
+            </li>
+            <li>
+              <Link to="/buy-crypto" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faDollarSign} className="text-red-400 mr-3" />
+                Buy Crypto
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center py-2 px-4 hover:bg-gray-700 rounded w-full text-left"
+              >
+                <FontAwesomeIcon icon={faUser} className="text-teal-400 mr-3" />
+                Account
+                <svg
+                  className={`ml-auto w-4 h-4 transition-transform ${isDropdownOpen ? 'transform rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <ul className="mt-2 pl-4 space-y-2">
+                  <li>
+                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600 rounded">Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600 rounded">Settings</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <Link to="/settings" className="flex items-center py-2 px-4 hover:bg-gray-700 rounded">
+                <FontAwesomeIcon icon={faCog} className="text-gray-400 mr-3" />
+                Settings
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
   );
 };
 

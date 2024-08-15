@@ -1,77 +1,109 @@
-import { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { HiMenu, HiX } from 'react-icons/hi';
+import { FaMoon, FaSun, FaDownload, FaUserCircle } from 'react-icons/fa';
+import { BsChevronDown } from 'react-icons/bs';
+import { GiGlobe } from 'react-icons/gi';
+import { useTheme } from '../ThemeContext';
+const Logo = () => (
+  <div className="flex flex-col items-center">
+    <span className="text-4xl font-bold text-green-500 mb-1">OMAYA</span>
+    <span className="text-xs font-bold text-white mt-1 ml-2">EXCHANGE</span>
+  </div>
+);
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = React.useState(false);
+  const { isDarkMode, toggleTheme } = useTheme();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleCountryDropdown = () => setIsCountryDropdownOpen(!isCountryDropdownOpen);
+  const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
-    <nav className="bg-gray-800 text-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img
-            src="/path-to-your-logo.png"  // Replace with the path to your logo image
-            alt="Logo"
-            className="h-8 w-auto"
-          />
-          <span className="text-xl font-bold">
-            <span className="uppercase">E</span>
-            <span className="text-yellow-500 uppercase">X</span>
-            <span className="uppercase">CHANGE</span>
-          </span>
-          {/* Updated name with styled 'X' */}
+    <header className={`p-4 fixed w-full top-0 left-0 z-30 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-800 text-white'} transition-colors duration-300`}>
+      <div className="container mx-auto flex items-center justify-between">
+        {/* Logo and Name */}
+        <div className="flex items-center flex-shrink-0">
+          <Logo />
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white focus:outline-none"
-          onClick={toggleMenu}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
+        <button className="md:hidden text-white" onClick={toggleSidebar}>
+          {isSidebarOpen ? <HiX className="text-2xl" /> : <HiMenu className="text-2xl" />}
         </button>
 
-        {/* Navigation Items */}
-        <div className={`md:flex items-center space-x-8 ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <a href="#" className="hover:text-gray-400 transition-colors">Dashboard</a>
-          <a href="#" className="hover:text-gray-400 transition-colors">Market</a>
-          <a href="#" className="hover:text-gray-400 transition-colors">Rates</a>
-          <a href="#" className="hover:text-gray-400 transition-colors">Blog</a>
-        </div>
+        {/* Navbar Links for Larger Screens */}
+        <nav className={`flex-1 hidden md:flex md:justify-center`}>
+          <ul className="flex space-x-6">
+            <li><Link to="/" className="block py-2 px-4 hover:bg-gray-700 rounded">Dashboard</Link></li>
+            <li><Link to="/market" className="block py-2 px-4 hover:bg-gray-700 rounded">Market</Link></li>
+            <li><Link to="/rates" className="block py-2 px-4 hover:bg-gray-700 rounded">Rates</Link></li>
+            <li><Link to="/blog" className="block py-2 px-4 hover:bg-gray-700 rounded">Blog</Link></li>
+          </ul>
+        </nav>
 
-        {/* Button and Profile Section */}
+        {/* Right Side: Buttons and Profile */}
         <div className="flex items-center space-x-4">
           {/* Deposit Button */}
-          <button className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition-colors">
-            Deposit
+          <button className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 text-md font-semibold hidden sm:flex">
+            <FaDownload className="text-xl" />
+            <span>Deposit</span>
           </button>
 
-          {/* Profile Section */}
-          <img
-            src="/path-to-profile-image.png"  // Replace with the path to the profile image
-            alt="Profile"
-            className="h-8 w-8 rounded-full border-2 border-gray-700"
-          />
-          <span>Account</span>
+          {/* User Profile */}
+          <div className="relative">
+            <button className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center">
+              <FaUserCircle className="text-2xl" />
+            </button>
+          </div>
+
+          {/* Country Dropdown */}
+          <div className="relative">
+            <button className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center" onClick={toggleCountryDropdown}>
+              <GiGlobe className="text-2xl" />
+              <BsChevronDown className={`text-xl transition-transform ${isCountryDropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
+            </button>
+            {isCountryDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-32 bg-gray-800 text-white rounded-lg shadow-lg z-40">
+                <ul>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700">USA</button></li>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700">UK</button></li>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700">Canada</button></li>
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Mode Toggle Button */}
+          <button onClick={toggleTheme} className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center">
+            {isDarkMode ? <FaSun className="text-xl" /> : <FaMoon className="text-xl" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden mt-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
-        <a href="#" className="block px-4 py-2 hover:bg-gray-700 transition-colors">Dashboard</a>
-        <a href="#" className="block px-4 py-2 hover:bg-gray-700 transition-colors">Market</a>
-        <a href="#" className="block px-4 py-2 hover:bg-gray-700 transition-colors">Rates</a>
-        <a href="#" className="block px-4 py-2 hover:bg-gray-700 transition-colors">Blog</a>
-      </div>
-    </nav>
+      {/* Sidebar for Mobile View */}
+      {isSidebarOpen && (
+        <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md md:hidden">
+          <div className="p-4">
+            <button
+              className="text-gray-300 hover:text-white mb-4"
+              onClick={toggleSidebar}
+            >
+              <HiX className="w-6 h-6" />
+            </button>
+            <ul>
+              <li><Link to="/" className="block py-2 px-4 hover:bg-gray-700 rounded" onClick={closeSidebar}>Dashboard</Link></li>
+              <li><Link to="/market" className="block py-2 px-4 hover:bg-gray-700 rounded" onClick={closeSidebar}>Market</Link></li>
+              <li><Link to="/rates" className="block py-2 px-4 hover:bg-gray-700 rounded" onClick={closeSidebar}>Rates</Link></li>
+              <li><Link to="/blog" className="block py-2 px-4 hover:bg-gray-700 rounded" onClick={closeSidebar}>Blog</Link></li>
+              {/* Add more mobile menu items if needed */}
+            </ul>
+          </div>
+        </aside>
+      )}
+    </header>
   );
 };
 
