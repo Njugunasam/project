@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { useTheme } from '..//ThemeContext'; // Import useTheme from your ThemeContext
+import { useTheme } from '../ThemeContext'; // Import useTheme from your ThemeContext
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const RateExchange = () => {
   const [view, setView] = useState('Crypto'); // State to toggle between Crypto and Forex
@@ -39,9 +42,17 @@ const RateExchange = () => {
         {/* Right Side: Deposit and Withdraw Buttons */}
         <div className="flex flex-col space-y-2 items-start w-[50%] pl-0">
           <div className="text-xl font-semibold mb-2">Transaction Type</div>
-          <div className="flex space-x-2">
-            <button className={`bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-600 ${isDarkMode ? 'hover:bg-green-700' : ''}`}>Deposit</button>
-            <button className={`bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 ${isDarkMode ? 'hover:bg-red-700' : ''}`}>Withdraw</button>
+          <div className="flex flex-col space-y-2 items-start">
+            <div className="flex space-x-2">
+              <button className={`bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-600 ${isDarkMode ? 'hover:bg-green-700' : ''} ml-2`}>
+                <FontAwesomeIcon icon={faArrowUp} className="mr-2" />
+                Deposit
+              </button>
+              <button className={`bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 ${isDarkMode ? 'hover:bg-red-700' : ''} ml-2`}>
+                <FontAwesomeIcon icon={faArrowDown} className="mr-2" />
+                Withdraw
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +75,7 @@ const RateExchange = () => {
               <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
                 <td className="px-4 py-2">
                   <div className="flex items-center space-x-2">
-                    <img src="/path/to/crypto-pic.jpg" alt="Bitcoin" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="Bitcoin" className="w-12 h-12 rounded-full border border-gray-300" />
                     <div className="flex flex-col">
                       <span className="text-sm font-semibold">BTC</span>
                       <span className="text-xs text-gray-500">Bitcoin</span>
@@ -74,6 +85,57 @@ const RateExchange = () => {
                 <td className="px-4 py-2">Bitcoin</td>
                 <td className="px-4 py-2">$25,000</td>
                 <td className="px-4 py-2">BTC Network</td>
+                <td className="px-4 py-2 text-center">
+                  <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
+                </td>
+              </tr>
+              <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="Ethereum" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">ETH</span>
+                      <span className="text-xs text-gray-500">Ethereum</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-2">Ethereum</td>
+                <td className="px-4 py-2">$1,600</td>
+                <td className="px-4 py-2">ETH Network</td>
+                <td className="px-4 py-2 text-center">
+                  <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
+                </td>
+              </tr>
+              <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" alt="Tether" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">USDT</span>
+                      <span className="text-xs text-gray-500">Tether</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-2">Tether</td>
+                <td className="px-4 py-2">$1.00</td>
+                <td className="px-4 py-2">TRC20</td>
+                <td className="px-4 py-2 text-center">
+                  <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
+                </td>
+              </tr>
+              <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" alt="Tron" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">TRX</span>
+                      <span className="text-xs text-gray-500">Tron</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-2">Tron</td>
+                <td className="px-4 py-2">$0.06</td>
+                <td className="px-4 py-2">TRC20</td>
                 <td className="px-4 py-2 text-center">
                   <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
                 </td>
@@ -97,7 +159,7 @@ const RateExchange = () => {
               <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
                 <td className="px-4 py-2">
                   <div className="flex items-center space-x-2">
-                    <img src="/path/to/forex-pic.jpg" alt="EUR/USD" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <img src="/path/to/forex-pic.jpg" alt="Forex" className="w-12 h-12 rounded-full border border-gray-300" />
                     <div className="flex flex-col">
                       <span className="text-sm font-semibold">EUR/USD</span>
                       <span className="text-xs text-gray-500">Euro/US Dollar</span>
@@ -105,8 +167,42 @@ const RateExchange = () => {
                   </div>
                 </td>
                 <td className="px-4 py-2">EUR/USD</td>
-                <td className="px-4 py-2">$1.12</td>
-                <td className="px-4 py-2">Forex Market</td>
+                <td className="px-4 py-2">1.0900</td>
+                <td className="px-4 py-2">Forex Network</td>
+                <td className="px-4 py-2 text-center">
+                  <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
+                </td>
+              </tr>
+              <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-2">
+                    <img src="/path/to/forex-pic.jpg" alt="Forex" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">GBP/JPY</span>
+                      <span className="text-xs text-gray-500">Pound/Yen</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-2">GBP/JPY</td>
+                <td className="px-4 py-2">167.45</td>
+                <td className="px-4 py-2">Forex Network</td>
+                <td className="px-4 py-2 text-center">
+                  <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
+                </td>
+              </tr>
+              <tr className={`border-b border-gray-200 ${isDarkMode ? 'bg-gray-800' : ''}`}>
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-2">
+                    <img src="/path/to/forex-pic.jpg" alt="Forex" className="w-12 h-12 rounded-full border border-gray-300" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold">USD/JPY</span>
+                      <span className="text-xs text-gray-500">Dollar/Yen</span>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-2">USD/JPY</td>
+                <td className="px-4 py-2">146.25</td>
+                <td className="px-4 py-2">Forex Network</td>
                 <td className="px-4 py-2 text-center">
                   <button className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600">⭐</button>
                 </td>
@@ -115,6 +211,13 @@ const RateExchange = () => {
             </tbody>
           </table>
         )}
+      </div>
+      {/* Warning Message */}
+      <div className="mt-4 flex items-center text-green-500 text-sm">
+        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-xl mr-2">
+          !
+        </span>
+        <span>For more crpto assets,please contact us via customer support.</span>
       </div>
     </div>
   );

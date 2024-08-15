@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       {/* Sidebar for larger screens */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:mt-24`}>
+      <aside className={`fixed inset-y-0 left-0 z-10 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:mt-24`}>
         <div className="p-4">
           {/* Mobile Toggle Button */}
           <button
@@ -66,16 +66,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {isDropdownOpen && (
-                <ul className="mt-2 pl-4 space-y-2">
+                <ul className="bg-gray-700 mt-2 rounded">
                   <li>
-                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600 rounded">Profile</Link>
+                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600">Profile</Link>
                   </li>
                   <li>
-                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600 rounded">Settings</Link>
+                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600">Settings</Link>
                   </li>
                 </ul>
               )}
@@ -90,8 +90,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
       </aside>
 
-      {/* Sidebar for smaller screens (Mobile) */}
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:hidden`}>
+      {/* Sidebar for mobile */}
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:hidden`}>
         <div className="p-4">
           <button
             className="text-gray-300 hover:text-white mb-4"
@@ -144,16 +144,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {isDropdownOpen && (
-                <ul className="mt-2 pl-4 space-y-2">
+                <ul className="bg-gray-700 mt-2 rounded">
                   <li>
-                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600 rounded">Profile</Link>
+                    <Link to="/profile" className="block py-2 px-4 hover:bg-gray-600">Profile</Link>
                   </li>
                   <li>
-                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600 rounded">Settings</Link>
+                    <Link to="/settings" className="block py-2 px-4 hover:bg-gray-600">Settings</Link>
                   </li>
                 </ul>
               )}
@@ -166,7 +166,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </aside>
     </>
   );
 };
