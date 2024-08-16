@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`p-4 fixed w-full top-0 left-0 z-30 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-800 text-white'} transition-colors duration-300`}>
+    <header className={`p-4 fixed w-full top-0 left-0 z-50 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-800 text-white'} transition-colors duration-300`}>
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo and Name */}
         <div className="flex items-center flex-shrink-0">
