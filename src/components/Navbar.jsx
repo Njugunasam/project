@@ -5,6 +5,7 @@ import { FaMoon, FaSun, FaDownload, FaUserCircle } from 'react-icons/fa';
 import { BsChevronDown } from 'react-icons/bs';
 import { GiGlobe } from 'react-icons/gi';
 import { useTheme } from '../ThemeContext';
+
 const Logo = () => (
   <div className="flex flex-col items-center">
     <span className="text-4xl font-bold text-green-500 mb-1">OMAYA</span>
@@ -47,7 +48,7 @@ const Navbar = () => {
         {/* Right Side: Buttons and Profile */}
         <div className="flex items-center space-x-4">
           {/* Deposit Button */}
-          <button className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 text-md font-semibold hidden sm:flex">
+          <button className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 text-sm font-semibold hidden sm:flex">
             <FaDownload className="text-xl" />
             <span>Deposit</span>
           </button>
