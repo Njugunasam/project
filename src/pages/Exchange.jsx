@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../ThemeContext'; // Import useTheme from your ThemeContext
 
 const RateExchange = () => {
@@ -39,14 +41,16 @@ const RateExchange = () => {
           </p>
         </div>
 
-        <div className="flex flex-col space-y-2 items-start w-[50%] pl-4"> {/* Adjusted padding-left */}
+        <div className="flex flex-col space-y-2 items-start w-[70%] pl-4">
           <div className="text-base font-semibold mb-2">Transaction Type</div>
           <div className="flex flex-col space-y-2 items-start">
             <div className="flex space-x-2">
-              <button className={`bg-green-500 text-white px-8 py-2 text-xs rounded-lg hover:bg-green-600 transition ${isDarkMode ? 'hover:bg-green-700' : ''}`}>
+              <button className={`bg-green-500 text-white px-12 py-2 text-xs rounded-lg hover:bg-green-600 transition ${isDarkMode ? 'hover:bg-green-700' : ''}`}>
+                <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
                 Deposit
               </button>
-              <button className={`bg-gray-900 text-white px-4 py-2 text-xs rounded-lg border-2 border-red-600 hover:border-red-700 hover:bg-gray-800 transition ${isDarkMode ? 'hover:bg-gray-800' : ''}`}>
+              <button className={`bg-gray-900 text-white px-8 py-2 text-xs rounded-lg border-2 border-red-600 hover:border-red-700 hover:bg-gray-800 transition ${isDarkMode ? 'hover:bg-gray-800' : ''}`}>
+                <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
                 Withdraw
               </button>
             </div>
@@ -62,13 +66,13 @@ const RateExchange = () => {
                 <th className="px-4 py-2 text-xs font-medium">Profile</th>
                 <th className="px-4 py-2 text-xs font-medium">
                   Price 
-                  <i className="fas fa-arrow-up"></i> 
-                  <i className="fas fa-arrow-down"></i>
+                  <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
+                  <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
                 </th>
                 <th className="px-4 py-2 text-xs font-medium">
                   Network 
-                  <i className="fas fa-arrow-up"></i> 
-                  <i className="fas fa-arrow-down"></i>
+                  <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
+                  <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
                 </th>
                 <th className="px-4 py-2 text-xs font-medium">Favorite</th>
               </tr>
@@ -99,7 +103,9 @@ const RateExchange = () => {
                     </td>
                     <td className="px-4 py-2 text-xs">{index % 2 === 0 ? 'BTC Network' : 'ETH Network'}</td>
                     <td className="px-4 py-2 text-xs text-center">
-                      <button className="bg-yellow-500 text-white px-1 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">⭐</button>
+                      <button className="bg-yellow-500 text-white px-1 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">
+                        <FontAwesomeIcon icon={faStar} />
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -128,7 +134,9 @@ const RateExchange = () => {
                     </td>
                     <td className="px-4 py-2 text-xs">Forex Network</td>
                     <td className="px-4 py-2 text-xs text-center">
-                      <button className="bg-yellow-500 text-white px-2 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">⭐</button>
+                      <button className="bg-yellow-500 text-white px-2 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">
+                        <FontAwesomeIcon icon={faStar} />
+                      </button>
                     </td>
                   </tr>
                 ))
