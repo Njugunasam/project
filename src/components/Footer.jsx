@@ -11,7 +11,7 @@ const Logo = () => (
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4 text-center mt-auto w-full flex flex-col items-center z-30">
+    <footer className="w-full h-full px-5 py-2 z-30 ">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         {/* Follow Us */}
         <div className="flex flex-col items-center">

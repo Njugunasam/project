@@ -23,14 +23,20 @@ const App = () => {
     document.body.className = isDarkMode ? 'dark' : 'light';
   }, [isDarkMode]);
 
+  // Define the width of the sidebar
+  const sidebarWidth = 64; // Adjust if necessary
+
   return (
     <Router>
       <div className={`flex flex-col min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-        <Navbar />
-        <div className="flex flex-1 mt-16">
-          {/* Sidebar and main content layout */}
-          <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-          <main className={`flex-1 p-4 md:p-6 ${isSidebarOpen ? 'ml-64' : 'ml-0'} md:ml-64`}>
+        <Navbar className="fixed top-0 left-0 w-full z-40" />
+        <div className="flex flex-1 pt-16 pb-16">
+          <Sidebar 
+            isOpen={isSidebarOpen} 
+            toggleSidebar={toggleSidebar} 
+            className={`fixed top-16 bottom-16 left-0 z-30 w-${sidebarWidth}`} 
+          />
+          <main className={`flex-1 ${isSidebarOpen ? `ml-${sidebarWidth}` : 'ml-0'} p-4 md:p-6`}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/market" element={<Market />} />
@@ -42,7 +48,7 @@ const App = () => {
             </Routes>
           </main>
         </div>
-        <Footer />
+        <Footer className="fixed bottom-0 left-0 w-full z-40" />
       </div>
     </Router>
   );
