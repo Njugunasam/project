@@ -218,6 +218,13 @@ const RateExchange = () => {
           </table>
         )}
       </div>
+      {/* Warning Message */}
+      <div className="mt-4 flex items-center text-green-500 text-sm">
+        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-xl mr-2">
+          !
+        </span>
+        <span>For more crpto assets,please contact us via customer support.</span>
+      </div>
     </div>
   );
 };
