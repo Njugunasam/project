@@ -36,7 +36,7 @@ const App = () => {
             toggleSidebar={toggleSidebar} 
             className={`fixed top-16 bottom-16 left-0 z-30 w-${sidebarWidth}`} 
           />
-          <main className={`flex-1 ${isSidebarOpen ? `ml-${sidebarWidth}` : 'ml-0'} p-4 md:p-6`}>
+          <main className={`flex-1 ${isSidebarOpen ? `ml-${sidebarWidth}` : 'ml-0'} p-4 md:p-8`}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/market" element={<Market />} />

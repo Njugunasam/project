@@ -16,11 +16,37 @@ const Logo = () => (
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = React.useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = React.useState(false);
+  const [selectedCountry, setSelectedCountry] = React.useState('USA'); // Default country
   const { isDarkMode, toggleTheme } = useTheme();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const toggleCountryDropdown = () => setIsCountryDropdownOpen(!isCountryDropdownOpen);
+
+  const toggleCountryDropdown = () => {
+    if (isProfileDropdownOpen) {
+      setIsProfileDropdownOpen(false);
+    }
+    setIsCountryDropdownOpen(!isCountryDropdownOpen);
+  };
+
+  const toggleProfileDropdown = () => {
+    if (isCountryDropdownOpen) {
+      setIsCountryDropdownOpen(false);
+    }
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  };
+
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+    setIsCountryDropdownOpen(false);
+  };
+
+  const handleProfileSelect = (option) => {
+    console.log(option);
+    setIsProfileDropdownOpen(false);
+  };
 
   return (
     <header className={`p-4 fixed w-full top-0 left-0 z-30 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-800 text-white'} transition-colors duration-300`}>
@@ -45,7 +71,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* Right Side: Buttons and Profile */}
+        {/* Right Side: Buttons and Dropdowns */}
         <div className="flex items-center space-x-4">
           {/* Deposit Button */}
           <button className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 text-sm font-semibold hidden sm:flex">
@@ -53,25 +79,47 @@ const Navbar = () => {
             <span>Deposit</span>
           </button>
 
-          {/* User Profile */}
+          {/* Profile Dropdown */}
           <div className="relative">
-            <button className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center">
+            <button className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center" onClick={toggleProfileDropdown}>
               <FaUserCircle className="text-2xl" />
             </button>
+            {isProfileDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg z-40">
+                <ul>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700 w-full text-left" onClick={() => handleProfileSelect('Profile')}>Profile</button></li>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700 w-full text-left" onClick={() => handleProfileSelect('Settings')}>Settings</button></li>
+                  <li><button className="block px-4 py-2 hover:bg-gray-700 w-full text-left" onClick={() => handleProfileSelect('Logout')}>Logout</button></li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Country Dropdown */}
           <div className="relative">
             <button className="w-10 h-10 bg-gray-700 text-white rounded-full flex items-center justify-center" onClick={toggleCountryDropdown}>
               <GiGlobe className="text-2xl" />
+              <span className="ml-2">{selectedCountry}</span>
               <BsChevronDown className={`text-xl transition-transform ${isCountryDropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
             </button>
             {isCountryDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-gray-800 text-white rounded-lg shadow-lg z-40">
+              <div className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg z-40">
                 <ul>
-                  <li><button className="block px-4 py-2 hover:bg-gray-700">USA</button></li>
-                  <li><button className="block px-4 py-2 hover:bg-gray-700">UK</button></li>
-                  <li><button className="block px-4 py-2 hover:bg-gray-700">Canada</button></li>
+                  <li>
+                    <button className="flex items-center px-4 py-2 hover:bg-gray-700 w-full" onClick={() => handleCountrySelect('USA')}>
+                      🇺🇸 USA
+                    </button>
+                  </li>
+                  <li>
+                    <button className="flex items-center px-4 py-2 hover:bg-gray-700 w-full" onClick={() => handleCountrySelect('UK')}>
+                      🇬🇧 UK
+                    </button>
+                  </li>
+                  <li>
+                    <button className="flex items-center px-4 py-2 hover:bg-gray-700 w-full" onClick={() => handleCountrySelect('Canada')}>
+                      🇨🇦 Canada
+                    </button>
+                  </li>
                 </ul>
               </div>
             )}

@@ -38,6 +38,11 @@ const Footer = () => {
                 <FaLinkedinIn className="w-6 h-6" />
               </a>
             </li>
+            <li>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+                <FaWhatsapp className="w-6 h-6" />
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -101,11 +106,11 @@ const Footer = () => {
           <ul>
             <li className="flex items-center space-x-2">
               <FaPhoneAlt className="w-5 h-5" />
-              <a href="tel:+123456789" className="hover:underline">+123456789</a>
+              <a href="tel:+123456789" className="hover:underline">+25212345668</a>
             </li>
             <li className="flex items-center space-x-2">
               <FaWhatsapp className="w-5 h-5 text-green-500" />
-              <a href="https://wa.me/+123456789" target="_blank" rel="noopener noreferrer" className="hover:underline">WhatsApp</a>
+              <a href=":+123456789"  className="hover:underline">+25212345668</a>
             </li>
             <li className="flex items-center space-x-2">
               <FaEnvelope className="w-5 h-5" />

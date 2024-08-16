@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       {/* Sidebar for larger screens */}
-      <aside className={`relative z-10 w-64 bg-gray-900 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:pt-24`}>
+      <aside className={`relative z-10 w-64 bg-gray-900 text-white shadow-md transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:pt-8`}>
         <div className="p-4">
           {/* Mobile Toggle Button */}
           <button

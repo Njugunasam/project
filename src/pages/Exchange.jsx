@@ -63,23 +63,33 @@ const RateExchange = () => {
           <table className={`w-full text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             <thead>
               <tr className={`border-b ${isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-100'}`}>
-                <th className="px-4 py-2 text-xs font-medium">Profile</th>
-                <th className="px-4 py-2 text-xs font-medium">
-                  Price 
-                  <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
-                  <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
-                </th>
-                <th className="px-4 py-2 text-xs font-medium">
-                  Network 
-                  <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
-                  <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
-                </th>
-                <th className="px-4 py-2 text-xs font-medium">Favorite</th>
+                {view === 'Crypto' ? (
+                  <>
+                    <th className="px-4 py-2 text-xs font-medium">Name</th>
+                    <th className="px-4 py-2 text-xs font-medium">
+                      Price 
+                      <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
+                      <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
+                    </th>
+                    <th className="px-4 py-2 text-xs font-medium">
+                      Network 
+                      <FontAwesomeIcon icon={faArrowUp} className="slant-icon" />
+                      <FontAwesomeIcon icon={faArrowDown} className="slant-icon" />
+                    </th>
+                    <th className="px-4 py-2 text-xs font-medium">Favorite</th>
+                  </>
+                ) : (
+                  <>
+                    <th className="px-4 py-2 text-xs font-medium">Name</th>
+                    <th className="px-4 py-2 text-xs font-medium">Country</th>
+                    <th className="px-4 py-2 text-xs font-medium">More</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
               {view === 'Crypto' ? (
-                ['Bitcoin', 'Ethereum', 'Tether', 'Tron'].map((crypto, index) => (
+                ['Tether Tron Network', 'Ethereum', 'Bitcoin', 'Tron'].map((crypto, index) => (
                   <tr
                     key={crypto}
                     className={`border-b ${selectedRow === index ? 'bg-gray-700 text-white' : isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
@@ -99,40 +109,9 @@ const RateExchange = () => {
                       </div>
                     </td>
                     <td className="px-4 py-2 text-xs text-yellow-500">
-                      {`$${[25000, 1600, 1, 0.06][index]}`}
+                      {`$${[0.99, 3559.28, 60429.29, 0.002][index]}`}
                     </td>
-                    <td className="px-4 py-2 text-xs">{index % 2 === 0 ? 'BTC Network' : 'ETH Network'}</td>
-                    <td className="px-4 py-2 text-xs text-center">
-                      <button className="bg-yellow-500 text-white px-1 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">
-                        <FontAwesomeIcon icon={faStar} />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                ['Forex Profile 1', 'Forex Profile 2', 'Forex Profile 3'].map((forex, index) => (
-                  <tr
-                    key={forex}
-                    className={`border-b ${selectedRow === index ? 'bg-gray-700 text-white' : isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
-                    onClick={() => handleRowClick(index)}
-                  >
-                    <td className="px-4 py-2 text-xs">
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src="https://example.com/forex-image.png"
-                          alt="Forex Profile"
-                          className="w-12 h-12 rounded-full border border-gray-300"
-                        />
-                        <div className="flex flex-col">
-                          <span className="text-xs font-semibold">{forex}</span>
-                          <span className="text-xs text-gray-500">Description</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2 text-xs text-yellow-500">
-                      {`$${[1200, 1500, 1800][index]}`}
-                    </td>
-                    <td className="px-4 py-2 text-xs">Forex Network</td>
+                    <td className="px-4 py-2 text-xs">{index % 2 === 0 ? 'TRON' : 'ETHEREUM'}</td>
                     <td className="px-4 py-2 text-xs text-center">
                       <button className="bg-yellow-500 text-white px-2 py-1 text-xs rounded-lg hover:bg-yellow-600 transition">
                         <FontAwesomeIcon icon={faStar} />
@@ -140,17 +119,48 @@ const RateExchange = () => {
                     </td>
                   </tr>
                 ))
+              ) : (
+                [
+                  { Name: 'FXPRIMUS', country: 'Cyprus', more: '⭐', image: 'https://imgs.search.brave.com/bynxtf6v1o4wF_U_nzG_r8iOmVNGSUiW7lApaR12MoM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9laW1n/anlzLmZ4ZXllZS5j/b20vaWNvLzYzODM2/MzM2MDAxNzQxMzg5/OS9GWFQ2MzgzNjMz/NjAwMTc0MTM4OTlf/OTA4MDIyLnBuZ193/aWtpLXRlbXBsYXRl/LWdsb2JhbA' },
+                  { Name: 'ICM Capital', country: 'UAE', more: '⭐', image: 'https://imgs.search.brave.com/p_y_s_4_iJo1cws-NJQoMJErjOHCTW1acCust_wYbwI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93emlt/Zy5meDY5Ni5jb20v/Z3VvamkvMjAyNC0w/My0wNS82Mzg0NTIz/ODM2Mzk3NjkzOTAv/QVJUNjM4NDUyMzgz/NjM5NzY5MzkwXzQ1/NDQyMS5qcGctYXJ0/aWNsZTU5OA' },
+                  { Name: 'Perfect Money', country: 'Russia', more: '⭐', image: 'https://imgs.search.brave.com/plnYa3ulVEVTyE68m4vTsWZvWrIeBHm-UR5d8lxc8rg/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmlsZXBsYW5ldC5j/b20vYW5pYy9hdC9w/ZXJmZWN0LW1vbmV5/LWFuZHJvaWQucG5n' },
+                  // Add more forex profiles here with unique images
+                ].map((forex, index) => (
+                  <tr
+                    key={forex.Name}
+                    className={`border-b ${selectedRow === index ? 'bg-gray-700 text-white' : isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                    onClick={() => handleRowClick(index)}
+                  >
+                    <td className="px-4 py-2 text-xs">
+                      <div className="flex items-center space-x-2">
+                        <img
+                          src={forex.image}
+                          alt={forex.Name}
+                          className="w-12 h-12 rounded-full border border-gray-300"
+                        />
+                        <div className="flex flex-col">
+                          <span className="text-xs font-semibold">{forex.Name}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 text-xs text-gray-700">{forex.country}</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">{forex.more}</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
         </div>
       </div>
-      <div className="mt-4 flex items-center text-green-500 text-sm">
-        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-xl mr-2">
-          !
-        </span>
-        <span>For more crypto assets, please contact us via customer support.</span>
-      </div>
+      {view === 'Crypto' && (
+        <div className="mt-4 flex items-center text-green-500 text-sm">
+          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-xl mr-2">
+            !
+          </span>
+          <span>For more crypto assets, please contact us via customer support.</span> 
+        </div>
+      )}
+      
     </div>
   );
 };
